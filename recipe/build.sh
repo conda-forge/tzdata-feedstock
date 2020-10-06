@@ -1,5 +1,8 @@
 make -e \
-  TOPDIR="${PREFIX}" \
+  DESTDIR=./build \
   USRDIR='' \
   POSIXRULES='' \
-  install_data
+  install
+
+mkdir -p "${PREFIX}/share"
+mv ./build/share/zoneinfo "${PREFIX}/share/"

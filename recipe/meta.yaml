@@ -7,12 +7,8 @@ package:
 source:
   - url: https://data.iana.org/time-zones/releases/tzdata{{ version }}.tar.gz
     sha256: 547161eca24d344e0b5f96aff6a76b454da295dc14ed4ca50c2355043fb899a2
-    patches:
-    - 0001-Add-TABDATA-to-install_data.patch
   - url: https://data.iana.org/time-zones/releases/tzcode{{ version }}.tar.gz
     sha256: 7d2af7120ee03df71fbca24031ccaf42404752e639196fe93c79a41b38a6d669
-    patches:
-    - 0001-Add-TABDATA-to-install_data.patch
 
 build:
   number: 0
