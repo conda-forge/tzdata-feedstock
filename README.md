@@ -1,17 +1,19 @@
 About tzdata
 ============
 
-Home: https://github.com/python/tzdata
+Home: https://www.iana.org/time-zones
 
-Package license: Apache-2.0
+Package license: Public Domain
 
-Feedstock license: BSD 3-Clause
+Feedstock license: BSD-3-Clause
 
-Summary: Provider of IANA time zone data
+Summary: The Time Zone Database (called tz, tzdb or zoneinfo)
 
-This is a Python package containing zic-compiled binaries for the IANA time zone database.
-It is intended to be a fallback for systems that do not have system time zone data installed (or don't have it installed in a standard location),
-as a part of PEP 615.
+The Time Zone Database (called tz, tzdb or zoneinfo) contains code and
+data that represent the history of local time for many representative
+locations around the globe.  It is updated periodically to reflect
+changes made by political bodies to time zone boundaries, UTC offsets,
+and daylight-saving rules.
 
 
 Current build status
@@ -119,6 +121,6 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@mbargull](https://github.com/mbargull/)
 * [@ocefpaf](https://github.com/ocefpaf/)
-* [@pganssle](https://github.com/pganssle/)
 
