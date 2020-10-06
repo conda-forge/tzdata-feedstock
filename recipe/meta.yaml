@@ -17,6 +17,9 @@ source:
 build:
   number: 0
   noarch: generic
+  # The recipe assumes building on Linux, but we don't have "skip" active since
+  # the linter will complain with "`noarch` packages can't have selectors".
+  # skip: True  # [not linux]
   ignore_run_exports:
     - libgcc-ng
 
