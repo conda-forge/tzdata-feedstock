@@ -1,4 +1,4 @@
-{% set version = "2020a" %}
+{% set version = "2020b" %}
 
 package:
   name: tzdata
@@ -6,9 +6,9 @@ package:
 
 source:
   - url: https://data.iana.org/time-zones/releases/tzdata{{ version }}.tar.gz
-    sha256: 547161eca24d344e0b5f96aff6a76b454da295dc14ed4ca50c2355043fb899a2
+    sha256: 9b053f951d245ce89d850b96ee4711d82d833559b1fc96ba19f90bc4d745e809
   - url: https://data.iana.org/time-zones/releases/tzcode{{ version }}.tar.gz
-    sha256: 7d2af7120ee03df71fbca24031ccaf42404752e639196fe93c79a41b38a6d669
+    sha256: 47eff8944de4a64f7629b851e4a32338ab12c9b73edd62063795167ff1fe43da
 
 build:
   number: 0
@@ -54,7 +54,7 @@ about:
   home: https://www.iana.org/time-zones
   dev_url: https://github.com/eggert/tz
   doc_url: https://data.iana.org/time-zones/tz-link.html
-  license: Public Domain
+  license: LicenseRef-Public-Domain
   license_file: LICENSE
   summary: The Time Zone Database (called tz, tzdb or zoneinfo)
 
@@ -69,3 +69,4 @@ extra:
   recipe-maintainers:
     - ocefpaf
     - mbargull
+    - pganssle
