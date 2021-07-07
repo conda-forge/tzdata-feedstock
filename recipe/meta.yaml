@@ -11,7 +11,7 @@ source:
     sha256: eb46bfa124b5b6bd13d61a609bfde8351bd192894708d33aa06e5c1e255802d0
 
 build:
-  number: 0
+  number: 1
   noarch: generic
   # The recipe assumes building on Linux, but we don't have "skip" active since
   # the linter will complain with "`noarch` packages can't have selectors".
