@@ -1,11 +1,11 @@
-About tzdata
-============
+About tzdata-feedstock
+======================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/tzdata-feedstock/blob/main/LICENSE.txt)
 
 Home: https://www.iana.org/time-zones
 
 Package license: LicenseRef-Public-Domain
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/tzdata-feedstock/blob/main/LICENSE.txt)
 
 Summary: The Time Zone Database (called tz, tzdb or zoneinfo) data
 
