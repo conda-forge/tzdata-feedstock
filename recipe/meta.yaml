@@ -47,8 +47,8 @@ test:
     - |
       heads="$(
         find "${PREFIX}/share/zoneinfo" -type f \
-          \! -name \*.zi \! -name \*.tab \! -name leapseconds \
-          -exec head -c4 {} \; -printf \\n \
+          \! -name \*.zi \! -name \*.tab \! -name leapseconds \! -name leap-seconds.list \
+          -exec sh -c 'head -c4 $1 && echo' sh {} \; \
           | uniq
       )"
       test "${heads}" = TZif
