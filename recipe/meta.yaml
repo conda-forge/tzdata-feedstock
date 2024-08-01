@@ -16,13 +16,14 @@ build:
   # The recipe assumes building on Linux, but we don't have "skip" active since
   # the linter will complain with "`noarch` packages can't have selectors".
   # skip: True  # [not linux]
-  ignore_run_exports:
-    - libgcc-ng
+  ignore_run_exports_from:
+    - {{ stdlib('c') }}
+    - {{ compiler('c') }}
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
-    - sysroot_linux-64 2.17  # [linux64]
     - make
   host:
   run:
