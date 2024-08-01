@@ -7,6 +7,7 @@ set -ex
 
 make -e \
   DESTDIR=./build \
+  EXPIRES_LINE=1 \
   USRDIR='' \
   POSIXRULES='' \
   TZDATA_TEXT='tzdata.zi leapseconds leap-seconds.list' \
