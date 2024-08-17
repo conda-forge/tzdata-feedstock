@@ -13,9 +13,8 @@ source:
 build:
   number: 1
   noarch: generic
-  # The recipe assumes building on Linux, but we don't have "skip" active since
-  # the linter will complain with "`noarch` packages can't have selectors".
-  # skip: True  # [not linux]
+  # We build on osx (see conda-forge.yml) because sysroot_linux-<arch> depends on
+  # tzdata; since this package is data-only, we don't want any of the run-exports
   ignore_run_exports_from:
     - {{ stdlib('c') }}
     - {{ compiler('c') }}
