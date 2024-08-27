@@ -1,8 +1,7 @@
+conda_build:
+  pkg_format: '2'
 conda_forge_output_validation: true
 github:
   branch_name: main
   tooling_branch_name: main
-os_version:
-  linux_64: cos7
-conda_build:
-  pkg_format: '2'
+noarch_platforms: osx_64

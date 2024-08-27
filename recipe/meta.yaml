@@ -11,18 +11,18 @@ source:
     sha256: 80072894adff5a458f1d143e16e4ca1d8b2a122c9c5399da482cb68cba6a1ff8
 
 build:
-  number: 0
+  number: 1
   noarch: generic
-  # The recipe assumes building on Linux, but we don't have "skip" active since
-  # the linter will complain with "`noarch` packages can't have selectors".
-  # skip: True  # [not linux]
-  ignore_run_exports:
-    - libgcc-ng
+  # We build on osx (see conda-forge.yml) because sysroot_linux-<arch> depends on
+  # tzdata; since this package is data-only, we don't want any of the run-exports
+  ignore_run_exports_from:
+    - {{ stdlib('c') }}
+    - {{ compiler('c') }}
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
-    - sysroot_linux-64 2.17  # [linux64]
     - make
   host:
   run:
@@ -30,6 +30,7 @@ requirements:
 test:
   commands:
     - test -f "${PREFIX}/share/zoneinfo/leapseconds"
+    - test -f "${PREFIX}/share/zoneinfo/leap-seconds.list"
     - test -f "${PREFIX}/share/zoneinfo/iso3166.tab"
     - test -f "${PREFIX}/share/zoneinfo/zone1970.tab"
     - test -f "${PREFIX}/share/zoneinfo/zone.tab"
@@ -45,8 +46,8 @@ test:
     - |
       heads="$(
         find "${PREFIX}/share/zoneinfo" -type f \
-          \! -name \*.zi \! -name \*.tab \! -name leapseconds \
-          -exec head -c4 {} \; -printf \\n \
+          \! -name \*.zi \! -name \*.tab \! -name leapseconds \! -name leap-seconds.list \
+          -exec sh -c 'head -c4 $1 && echo' sh {} \; \
           | uniq
       )"
       test "${heads}" = TZif
@@ -72,3 +73,4 @@ extra:
     - ocefpaf
     - mbargull
     - pganssle
+    - h-vetinari
