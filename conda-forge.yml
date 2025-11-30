@@ -5,3 +5,4 @@ github:
   branch_name: main
   tooling_branch_name: main
 noarch_platforms: osx_64
+conda_build_tool: rattler-build
