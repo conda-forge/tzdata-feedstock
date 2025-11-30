@@ -68,7 +68,7 @@ about:
     and daylight-saving rules.
 
 extra:
-  maintainers:
+  recipe-maintainers:
     - ocefpaf
     - mbargull
     - pganssle
