@@ -10,6 +10,7 @@ source:
     sha256: 11810413345fc7805017e27ea9fa4885fd74cd61b2911711ad038f5d28d71474
   - url: https://data.iana.org/time-zones/releases/tzcode${{ version }}.tar.gz
     sha256: 05f8fedb3525ee70d49c87d3fae78a8a0dbae4fe87aa565c65cda9948ae135ec
+    target_directory: tzcode
 
 build:
   number: 1
