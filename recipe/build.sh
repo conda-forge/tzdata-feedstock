@@ -3,10 +3,9 @@ set -ex
 
 # pull tzcode/* up one directory, except "calendars", as this already exists in tzdata
 if [[ -d tzcode ]]; then
-    # Move everything except "calendars"
     find tzcode -mindepth 1 -maxdepth 1 \
         -not -name calendars \
-        -exec mv -t . {} +
+        -exec mv {} . \;
 fi
 
 # by default the makefile does not install leap-seconds.list;
