@@ -17,6 +17,8 @@ build:
   noarch: generic
   script:
     file: build.sh
+    # Workaround as rattler-build sets target_platform to noarch, such that the compiler-activation script would not be run
+    # https://github.com/conda-forge/tzdata-feedstock/pull/34#issuecomment-3593550598
     env: { target_platform: "${{ host_platform }}" }
 
 requirements:
