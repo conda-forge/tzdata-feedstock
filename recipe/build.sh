@@ -1,12 +1,9 @@
 #!/bin/bash
 set -ex
 
-# pull tzcode/* up one directory, except "calendars", as this already exists in tzdata
-if [[ -d tzcode ]]; then
-    find tzcode -mindepth 1 -maxdepth 1 \
-        -not -name calendars \
-        -exec mv {} . \;
-fi
+# pull tzcode/* up one directory, which is necessary because rattler-build won't pull both sources into
+# one dir because of duplicate metadata-files
+mv tzcode/* .
 
 # by default the makefile does not install leap-seconds.list;
 # however, some implementations (e.g. libc++) rely on it so
