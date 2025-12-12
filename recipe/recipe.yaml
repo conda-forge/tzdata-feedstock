@@ -1,34 +1,41 @@
-{% set version = "2025b" %}
+context:
+  version: 2025b
 
 package:
   name: tzdata
-  version: {{ version }}
+  version: ${{ version }}
 
 source:
-  - url: https://data.iana.org/time-zones/releases/tzdata{{ version }}.tar.gz
+  - url: https://data.iana.org/time-zones/releases/tzdata${{ version }}.tar.gz
     sha256: 11810413345fc7805017e27ea9fa4885fd74cd61b2911711ad038f5d28d71474
-  - url: https://data.iana.org/time-zones/releases/tzcode{{ version }}.tar.gz
+  - url: https://data.iana.org/time-zones/releases/tzcode${{ version }}.tar.gz
     sha256: 05f8fedb3525ee70d49c87d3fae78a8a0dbae4fe87aa565c65cda9948ae135ec
+    # separate directory because r-b refuses to clobber overlapping metadata; undone in build.sh
+    target_directory: tzcode
 
 build:
-  number: 0
+  number: 1
   noarch: generic
-  # We build on osx (see conda-forge.yml) because sysroot_linux-<arch> depends on
-  # tzdata; since this package is data-only, we don't want any of the run-exports
-  ignore_run_exports_from:
-    - {{ stdlib('c') }}
-    - {{ compiler('c') }}
+  script:
+    file: build.sh
+    # Workaround as rattler-build sets target_platform to noarch, such that the compiler-activation script would not be run
+    # https://github.com/conda-forge/tzdata-feedstock/pull/34#issuecomment-3593550598
+    env: { target_platform: "${{ host_platform }}" }
 
 requirements:
   build:
-    - {{ stdlib('c') }}
-    - {{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('c') }}
     - make
-  host:
-  run:
+  # We build on osx (see conda-forge.yml) because sysroot_linux-<arch> depends on
+  # tzdata; since this package is data-only, we don't want any of the run-exports
+  ignore_run_exports:
+    from_package:
+      - ${{ stdlib('c') }}
+      - ${{ compiler('c') }}
 
-test:
-  commands:
+tests:
+  - script:
     - test -f "${PREFIX}/share/zoneinfo/leapseconds"
     - test -f "${PREFIX}/share/zoneinfo/leap-seconds.list"
     - test -f "${PREFIX}/share/zoneinfo/iso3166.tab"
@@ -53,13 +60,12 @@ test:
       test "${heads}" = TZif
 
 about:
-  home: https://www.iana.org/time-zones
-  dev_url: https://github.com/eggert/tz
-  doc_url: https://data.iana.org/time-zones/tz-link.html
+  homepage: https://www.iana.org/time-zones
+  repository: https://github.com/eggert/tz
+  documentation: https://data.iana.org/time-zones/tz-link.html
   license: LicenseRef-Public-Domain
   license_file: LICENSE
   summary: The Time Zone Database (called tz, tzdb or zoneinfo) data
-
   description: |
     The Time Zone Database (called tz, tzdb or zoneinfo) contains code 
     (the tzcode package) and data (this package) that represent the
