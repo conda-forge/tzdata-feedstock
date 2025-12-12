@@ -1,8 +1,8 @@
 #!/bin/bash
 set -ex
 
-# pull tzcode/* up one directory, which is necessary because rattler-build won't pull both sources into
-# one dir because of duplicate metadata-files
+# undo separate folder for tzcode (see recipe.yaml), which is necessary because rattler-build
+# won't pull both sources into the same directory due to overlapping metadata-files
 mv tzcode/* .
 
 # by default the makefile does not install leap-seconds.list;
