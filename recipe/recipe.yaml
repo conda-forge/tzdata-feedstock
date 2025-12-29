@@ -14,7 +14,7 @@ source:
     target_directory: tzcode
 
 build:
-  number: 0
+  number: 1
   noarch: generic
   script:
     file: build.sh
