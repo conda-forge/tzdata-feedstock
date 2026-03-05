@@ -42,14 +42,14 @@ tests:
       - test -f "${PREFIX}/share/zoneinfo/zone1970.tab"
       - test -f "${PREFIX}/share/zoneinfo/zone.tab"
       - test -f "${PREFIX}/share/zoneinfo/tzdata.zi"
-    # Make sure we only package zoneinfo and nothing else.
+      # Make sure we only package zoneinfo and nothing else.
       - |
         dirs="$(
           find "${PREFIX}" -mindepth 1 -maxdepth 2 \
           \! -path "${PREFIX}/share" \! -path "${PREFIX}/info*"
         )"
         test "${dirs}" = "${PREFIX}/share/zoneinfo"
-    # Make sure we only package timezone information files.
+      # Make sure we only package timezone information files.
       - |
         heads="$(
           find "${PREFIX}/share/zoneinfo" -type f \
