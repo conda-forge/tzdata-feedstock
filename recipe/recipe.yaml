@@ -46,7 +46,7 @@ tests:
       - |
         dirs="$(
           find "${PREFIX}" -mindepth 1 -maxdepth 2 \
-          \! -path "${PREFIX}/share" \! -path "${PREFIX}/conda-meta*"
+          \! -path "${PREFIX}/share" \! -path "${PREFIX}/info*"
         )"
         test "${dirs}" = "${PREFIX}/share/zoneinfo"
     # Make sure we only package timezone information files.
